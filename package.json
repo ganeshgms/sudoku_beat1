@@ -1,0 +1,24 @@
+{
+  "name": "sudoku_poc",
+  "version": "1.0.0",
+  "description": "A typical node js code to solve Sudoku using 'ECMASCRIPT 8 - OOPS concept'. ",
+  "main": "cell.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "sudoku",
+    "sudoku solver",
+    "sudoku solution"
+  ],
+  "author": "Ganesh Muthu Subramanian <ganeshh@teezle.com>",
+  "license": "MIT",
+  "dependencies": {
+    "mocha": "^6.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.14.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
