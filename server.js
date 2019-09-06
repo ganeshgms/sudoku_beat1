@@ -29,7 +29,6 @@ setTimeout(() => {
   console.log('START');
   SudokuObj.initialize(input);
 }, 2000);
-
 // setTimeout(function(){
 //    SudokuObj.samp()
 // },3000)
