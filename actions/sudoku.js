@@ -132,7 +132,7 @@ class Sudoku {
             POSSIBLE VALUES - CUBES ${(this.cubes[this.cells[i].cubeIndex].possibleValues)}`);
   }
 
-  loop(input) {
+  loop1(input) {
     for (let i = 0; i < 81; i += 1) {
       if (input[i] >= 0 && input[i] < 10) {
         this.cond1(input, i);
