@@ -88,46 +88,54 @@ class Sudoku {
     console.log('CUBES CREATED');
   }
 
+  cond1(input, i) {
+    if (input[i] === 0) {
+      console.log('NO NEED TO REMOVE POSSIBLE VALUE');
+    } else {
+      this.loop2(input, i);
+    }
+  }
+
+  loop2(input, i) {
+    this.cells[i].value = input[i];
+    this.cells[i].possibleValues = [];
+    const rowIndex = this.rows[this.cells[i].rowIndex];
+    const columnIndex = this.columns[this.cells[i].columnIndex];
+    const cubeIndex = this.cubes[this.cells[i].cubeIndex];
+
+
+    for (let rc = 0; rc < 9; rc += 1) {
+      console.log(`ITERATION ${rc}`);
+      let rowCells = rowIndex.rowCells[rc].possibleValues;
+      rowCells = rowCells.filter(value => (value !== input[i]));
+      console.log(this.rows[this.cells[i].rowIndex].rowCells[rc]);
+
+      let columnCell = columnIndex.columnCells[rc].possibleValues;
+      columnCell = columnCell.filter(value => (value !== input[i]));
+      console.log(this.columns[this.cells[i].columnIndex].columnCells[rc]);
+
+      let cubeCell = cubeIndex.cubeCells[rc].possibleValues;
+      cubeCell = cubeCell.filter(value => (value !== input[i]));
+      console.log(this.cubes[this.cells[i].cubeIndex].cubeCells[rc]);
+    }
+
+    rowIndex.possibleValues = rowIndex.possibleValues.filter(val => val !== input[i]);
+    console.log(`ROW INDEX : ${this.cells[i].rowIndex} 
+            POSSIBLE VALUES - ROWS  ${(this.rows[this.cells[i].rowIndex].possibleValues)}`);
+
+    columnIndex.possibleValues = columnIndex.possibleValues.filter(val => val !== input[i]);
+    console.log(`COLUMN INDEX : ${this.cells[i].columnIndex} 
+            POSSIBLE VALUES - COLUMNS ${(this.columns[this.cells[i].columnIndex].possibleValues)}`);
+
+    cubeIndex.possibleValues = cubeIndex.possibleValues.filter(val => val !== input[i]);
+    console.log(`CUBE INDEX : ${this.cells[i].cubeIndex} 
+            POSSIBLE VALUES - CUBES ${(this.cubes[this.cells[i].cubeIndex].possibleValues)}`);
+  }
+
   loop(input) {
     for (let i = 0; i < 81; i += 1) {
       if (input[i] >= 0 && input[i] < 10) {
-        if (input[i] === 0) {
-          console.log('NO NEED TO REMOVE POSSIBLE VALUE');
-        } else {
-          this.cells[i].value = input[i];
-          this.cells[i].possibleValues = [];
-          const rowIndex = this.rows[this.cells[i].rowIndex];
-          const columnIndex = this.columns[this.cells[i].columnIndex];
-          const cubeIndex = this.cubes[this.cells[i].cubeIndex];
-
-
-          for (let rc = 0; rc < 9; rc += 1) {
-            console.log(`ITERATION ${rc}`);
-            let rowCells = rowIndex.rowCells[rc].possibleValues;
-            rowCells = rowCells.filter(value => (value !== input[i]));
-            console.log(this.rows[this.cells[i].rowIndex].rowCells[rc]);
-
-            let columnCell = columnIndex.columnCells[rc].possibleValues;
-            columnCell = columnCell.filter(value => (value !== input[i]));
-            console.log(this.columns[this.cells[i].columnIndex].columnCells[rc]);
-
-            let cubeCell = cubeIndex.cubeCells[rc].possibleValues;
-            cubeCell = cubeCell.filter(value => (value !== input[i]));
-            console.log(this.cubes[this.cells[i].cubeIndex].cubeCells[rc]);
-          }
-
-          rowIndex.possibleValues = rowIndex.possibleValues.filter(val => val !== input[i]);
-          console.log(`ROW INDEX : ${this.cells[i].rowIndex} 
-            POSSIBLE VALUES - ROWS  ${(this.rows[this.cells[i].rowIndex].possibleValues)}`);
-
-          columnIndex.possibleValues = columnIndex.possibleValues.filter(val => val !== input[i]);
-          console.log(`COLUMN INDEX : ${this.cells[i].columnIndex} 
-            POSSIBLE VALUES - COLUMNS ${(this.columns[this.cells[i].columnIndex].possibleValues)}`);
-
-          cubeIndex.possibleValues = cubeIndex.possibleValues.filter(val => val !== input[i]);
-          console.log(`CUBE INDEX : ${this.cells[i].cubeIndex} 
-            POSSIBLE VALUES - CUBES ${(this.cubes[this.cells[i].cubeIndex].possibleValues)}`);
-        }
+        this.cond1(input, i);
       } else {
         console.log('INVALID INPUT DATA - INPUT VALUE SHOULD BE BETWEEN 0 TO 9');
         console.log(`ENTERED VALUE ${input[i]} AT POSITION ${i}`);
