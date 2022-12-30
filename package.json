@@ -14,7 +14,7 @@
   "author": "Ganesh Muthu Subramanian <ganeshh@teezle.com>",
   "license": "MIT",
   "dependencies": {
-    "mocha": "^6.0.2"
+    "mocha": "^10.2.0"
   },
   "devDependencies": {
     "eslint": "^5.14.1",
